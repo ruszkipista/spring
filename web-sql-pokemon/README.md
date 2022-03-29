@@ -16,28 +16,20 @@ Enter the following settings:
     * Packaging: Jar
     * Java: 11
 
-Click on “ADD DEPENDENCIES” on the right panel of the page. Add the following dependencies under each respective category:
+Click on *ADD DEPENDENCIES* on the right panel of the page. Add the following dependencies under each respective category:
 
 * DEVELOPER TOOLS
-    * Spring Boot DevTools
+    * Spring Boot DevTools - Provides fast application restarts, LiveReload, and configurations for enhanced development experience.
 * WEB
-    * Spring Web
-    * Rest Repositories
+    * Spring Web - Build web, including RESTful, applications using Spring MVC. Uses Apache Tomcat as the default embedded container.
+    * Rest Repositories - Exposing Spring Data repositories over REST via Spring Data REST.
 * TEMPLATE ENGINES
-    * Thymeleaf
+    * Thymeleaf - A modern server-side Java template engine for both web and standalone environments. Allows HTML to be correctly displayed in browsers and as static prototypes.
 * SQL
-    * Spring Data JPA
-    * H2 Database
+    * Spring Data JPA - Persist data in SQL stores with Java Persistence API using Spring Data and Hibernate.
+    * H2 Database - Provides a fast in-memory database that supports JDBC API and R2DBC access, with a small (2mb) footprint. Supports embedded and server modes as well as a browser based console application.
 
 Click on “GENERATE” to download a zipped file named `pokemon.zip`. Unzip `pokemon.zip` into your project directory.
 
 # How to run the project
 Run class PokemonApplication/main and visit (default) URL http://localhost:8080
-
-### Further Learning
-* To learn more about Spring Boot and Initializr https://spring.io/guides/gs/spring-boot/
-* Building an application with Spring Boot https://spring.io/guides/gs/spring-boot/
-* Why choose Spring as your Java framework? https://www.baeldung.com/spring-why-to-choose
-* Difference between Spring and Spring Boot https://www.baeldung.com/spring-vs-spring-boot
-* What is Spring MVC? https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/mvc.html
-* What are some common Spring Boot Annotations? https://www.baeldung.com/spring-boot-annotations
