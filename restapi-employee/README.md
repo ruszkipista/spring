@@ -112,7 +112,8 @@ in folder `src/main/java/io/spring/employees` create these folders
 
 ## Install MariaDB
 [MariaDB documentation](https://mariadb.org/documentation/)
-on Ubuntu, open a terminal
+
+on Ubuntu, open a terminal:
 ```Bash
 $ sudo apt-get update
 $ sudo apt-get install mariadb-server
@@ -132,8 +133,8 @@ MariaDB [(none)]> SET PASSWORD FOR 'root'@'localhost' = PASSWORD('mypassword');
 Query OK, 0 rows affected, 1 warning (0.000 sec)
 
 MariaDB [(none)]> FLUSH PRIVILEGES;
-
 Query OK, 0 rows affected (0.000 sec)
+
 MariaDB [(none)]> exit
 Bye
 ```
@@ -146,11 +147,26 @@ Enter password:
 Welcome to the MariaDB monitor.
 ...
 ```
-create database `ems`
+create database `ems`:
 ```Bash
 MariaDB [(none)]> create database ems;
 Query OK, 1 row affected (0.000 sec)
 
 MariaDB [(none)]> exit
 Bye
+```
+
+## Configure `application.properties` with MariaDB
+in folder `src/main/resources` update file `application.properties`:
+```Python
+spring.datasource.url=jdbc:mariadb://localhost:3306/ems?useSSL=false
+spring.datasource.username=root
+spring.datasource.password=mypassword
+spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
+
+# Hibernate properties
+# from here: https://docs.jboss.org/hibernate/orm/5.3/javadocs/org/hibernate/dialect/package-summary.html
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MariaDBDialect
+# create, create-drop
+spring.jpa.hibernate.ddl-auto=update
 ```
