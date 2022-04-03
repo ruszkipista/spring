@@ -21,8 +21,11 @@ public class EmployeeController {
     }
 
     // build Create Employee REST Endpoint
-    @PostMapping
-    public ResponseEntity<Employee> saveEmployee(@RequestBody Employee employee){
+    @PostMapping //maps HTTP POST request onto specific handler method
+    // annotation @RequestBody indicates that a method parameter should be bound to the body
+    // of the web request. The body of the request is passed through an HttpMessageConverter
+    // to resolve the method argument depending on the content type of the request.
+    public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee){
         return new ResponseEntity<Employee>(
             this.employeeService.saveEmployee(employee), 
             HttpStatus.CREATED);

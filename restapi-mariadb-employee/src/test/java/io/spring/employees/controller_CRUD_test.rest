@@ -1,0 +1,29 @@
+@baseUrl = http://localhost:8080
+
+### create one employee
+POST {{baseUrl}}/api/employee HTTP/1.1
+content-type: application/json
+
+{
+    "firstName": "Pista",
+    "lastName": "Ruszki",
+    "email": "rp@email.org"
+}
+
+# expect return code 201 (Created)
+# expect in body the same employee with a unique ID
+# expect posted employee to appear in MariaDB database ems / table employees
+# in a terminal:
+# $ mariadb -u root -p
+# Enter password: 
+# Welcome to the MariaDB monitor....
+# MariaDB [(none)]> use ems;
+# Database changed
+#
+# MariaDB [ems]> select * from employees;
+# +----+--------------+------------+-----------+
+# | id | email        | first_name | last_name |
+# +----+--------------+------------+-----------+
+# |  1 | rp@email.org | Pista      | Ruszki    |
+# +----+--------------+------------+-----------+
+# 1 row in set (0.000 sec)

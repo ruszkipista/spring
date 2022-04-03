@@ -181,3 +181,8 @@ jdbc:mariadb://{mariaddb_server}/{database}
 &characterEncoding=utf8
 ```
 See [this](https://beansandanicechianti.blogspot.com/2019/11/mysql-ssl-configuration.html) how to set up SSL for the production database server
+
+## Testing the REST API
+Read [this](https://blog.bitsrc.io/vs-codes-rest-client-plugin-is-all-you-need-to-make-api-calls-e9e95fcfd85a) article about REST Client plugin for VSCode.
+
+see file `controller_CRUD_test.rest` in folder `/src/test/java/io/spring/employees/`
