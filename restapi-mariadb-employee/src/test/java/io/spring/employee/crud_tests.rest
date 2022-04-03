@@ -1,0 +1,11 @@
+@baseUrl = http://localhost:8080
+
+### create one employee
+POST {{baseUrl}}/api/employee HTTP/1.1
+content-type: application/json
+
+{
+    "firstName": "Pista",
+    "lastName": "Ruszki",
+    "email": "rp@email.org"
+}
