@@ -16,11 +16,11 @@ import lombok.Data;
 @Table(name="employees") // Persistence: assign entity to DB table name
 public class Employee {
 
-    @Id // Persistence: ID acts as primary key
+    @Id // Persistence: ID attribute acts as primary key in the DB table
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Persistence: how to fill at CREATE
     private long id;
 
-    @Column(name = "last_name")
+    @Column(name = "last_name") // Persistence: assign DB table name
     private String lastName;
 
     @Column(name = "first_name", nullable = false)
