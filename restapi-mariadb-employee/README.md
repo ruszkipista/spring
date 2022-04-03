@@ -35,7 +35,7 @@ What you’ll learn
     Learn how to connect Spring boot application to MariaDB SQL database
     Learn how to use Spring Data JPA in Spring boot application
 
-You can check the original source code of this project in the author's GitHub [repository]((https://github.com/RameshMF/spring-boot-tutorial-course)).
+You can check the original source code of this project in the author's GitHub [repository](https://github.com/RameshMF/spring-boot-tutorial-course).
 
 ## API Requirements
 Create REST API for Employee Management System
@@ -48,7 +48,7 @@ REST client should be able to
 - delete an employee
 
 ## API Design
-|HTTP Method|URL Path|Status Code|Description
+|HTTP Method|Endpoint Path|Status Code|Description
 |-|-|-|-|
 |GET|`/api/employee`|200 (OK)|Get all employees
 |GET|`/api/employee/{id}`|200 (OK)|Get single employee by Id
