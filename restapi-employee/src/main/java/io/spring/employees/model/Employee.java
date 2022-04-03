@@ -1,20 +1,31 @@
 package io.spring.employees.model;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-// Lombok annotation for generating methods
-@Setter
-@Getter
-@AllArgsConstructor
-@EqualsAndHashCode
-@ToString
-// the aboves are equivalent to @Data
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@AllArgsConstructor // Lombok: generate a constructor with all attributes
+@Data // Lombok: equivalent to @Setter @Getter @EqualsAndHashCode @ToString
+@Entity // Persistence: specifies that the class is an entity
+@Table(name="employees") // Persistence: assign entity to DB table name
 public class Employee {
+
+    @Id // Persistence: ID acts as primary key
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Persistence: how to fill at CREATE
     private long id;
+
+    @Column(name = "last_name")
     private String lastName;
+
+    @Column(name = "first_name", nullable = false)
     private String firstName;
+
+    @Column(name = "email")
+    private String email;
 }

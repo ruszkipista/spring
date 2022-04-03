@@ -1,43 +1,41 @@
-Learn building REST API's using Spring Boot, Spring Data JPA (Hibernate) and MySQL for Employee Management Project
-
-[Spring Boot Tutorial for Beginners](https://youtube.com/playlist?list=PLGRDMO4rOGcOKUURLsVMKZbCZhZJNtEwW)
-
-[Spring Boot RESRful Web Services Tutorial on Udemy](https://www.udemy.com/course/spring-boot-restful-web-services-tutorial-free-course)
-
-In this course, you will learn how to build REST APIs using the latest version of Spring Boot, Spring Data JPA (Hibernate), and MySQL database.
+# Employee Management Project
+Learn building REST APIs using Spring Boot, Spring Data JPA (Hibernate) and MariaDB database for Employee Management Project
 
 Spring Boot is basically an extension of the Spring framework which eliminated the boilerplate configurations required for setting up a Spring application.
 
 Spring Boot is an opinionated framework that helps developers build Spring-based applications quickly and easily. The main goal of Spring Boot is to quickly create Spring-based applications without requiring developers to write the same boilerplate configuration again and again.
 
-You can download the source code of this project from my GitHub [repository]((https://github.com/RameshMF/spring-boot-tutorial-course)).
+Original course on Youtube: [Spring Boot Tutorial for Beginners](https://youtube.com/playlist?list=PLGRDMO4rOGcOKUURLsVMKZbCZhZJNtEwW)
 
-**Tutorial Contents**
+## Tutorial Contents
+Shortened 2h course on Udemy: [Spring Boot RESRful Web Services Tutorial](https://www.udemy.com/course/spring-boot-restful-web-services-tutorial-free-course)
 
 01. Intro
 02. Project Requirement and REST API Design
-03. Quick Recap of JPA, Hibernate, and Spring Data JPA
+03. Quick Recap of JPA (Java Persistance API), Hibernate, and Spring Data JPA
 04. Spring Boot Project Architecture
 05. Create Spring Boot Project in STS
 06. Create Packaging Structure
-07. Configure MySQL Database -
-08. Create Employee JPA Entity -
-09. Create Spring Data JPA EmployeeRepository -
+07. Configure MariaDB Database
+08. Create Employee JPA Entity
+09. Create Spring Data JPA EmployeeRepository
 10. Create Custom Exception
-11. Build Create Employee REST API
-12. Build Get All Employees REST API
-13. Build Get Employee By ID REST API
-14. Build Update Employee REST API
-15. Build Delete Employee REST API
+11. Build *Create Employee REST API*
+12. Build *Get All Employees REST API*
+13. Build *Get Employee By ID REST API*
+14. Build *Update Employee REST API*
+15. Build *Delete Employee REST API*
 
 And more.....
 What you’ll learn
 
+    Learn how to use Lombok library to reduce boilerplate code
     Learn how to build RESTful webservices using Spring Boot
     Learn how to develop three layer architecture (Controller, Service and Repository) in Spring boot application
-    Learn how to connect Spring boot application to MySQL database
-    Learn how to use Lombok library to reduce boilerplate code
+    Learn how to connect Spring boot application to MariaDB SQL database
     Learn how to use Spring Data JPA in Spring boot application
+
+You can check the original source code of this project in the author's GitHub [repository]((https://github.com/RameshMF/spring-boot-tutorial-course)).
 
 ## API Requirements
 Create REST API for Employee Management System
@@ -118,7 +116,7 @@ on Ubuntu, open a terminal:
 $ sudo apt-get update
 $ sudo apt-get install mariadb-server
 ```
-Check installation, it should display the version, distribution, operating system, and architecture.:
+Check installation, it should display the version, distribution, operating system, and architecture:
 ```Bash
 $ mysqladmin --version
 mysqladmin  Ver 9.1 Distrib 10.3.34-MariaDB, for debian-linux-gnu on x86_64
@@ -147,7 +145,7 @@ Enter password:
 Welcome to the MariaDB monitor.
 ...
 ```
-create database `ems`:
+create database `ems` (Employee Management System):
 ```Bash
 MariaDB [(none)]> create database ems;
 Query OK, 1 row affected (0.000 sec)
@@ -170,3 +168,16 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MariaDBDialect
 # create, create-drop
 spring.jpa.hibernate.ddl-auto=update
 ```
+
+if the DB is production server, the first line should be (without the line breaks!)
+```http
+jdbc:mariadb://{mariaddb_server}/{database}
+?useSSL=true
+&sslMode=VERIFY_IDENTITY
+&trustCertificateKeyStoreUrl=file:/etc/ssl/certs/java/cacerts
+&trustCertificateKeyStorePassword=changeit
+&enabledTLSProtocols=TLSv1.2
+&useUnicode=true
+&characterEncoding=utf8
+```
+See [this](https://beansandanicechianti.blogspot.com/2019/11/mysql-ssl-configuration.html) how to set up SSL for the production database server
