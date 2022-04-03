@@ -1,7 +1,10 @@
 package io.spring.employees.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +23,7 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-    // build Create Employee REST Endpoint
+    // Create Employee REST Endpoint
     @PostMapping //maps HTTP POST request onto specific handler method
     // annotation @RequestBody indicates that a method parameter should be bound to the body
     // of the web request. The body of the request is passed through an HttpMessageConverter
@@ -30,4 +33,11 @@ public class EmployeeController {
             this.employeeService.saveEmployee(employee), 
             HttpStatus.CREATED);
     }
+
+    // Get All Employees REST Endpoint
+    @GetMapping //maps HTTP GET request onto specific handler method
+    public List<Employee> readAllEmployees(){
+        return this.employeeService.getAllEmployees();
+    }
+    
 }

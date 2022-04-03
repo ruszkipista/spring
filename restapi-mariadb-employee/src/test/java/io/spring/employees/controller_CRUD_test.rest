@@ -11,19 +11,47 @@ content-type: application/json
 }
 
 # expect return code 201 (Created)
-# expect in body the same employee with a unique ID
+# expect in response body the same employee with a unique ID
+# {"id":1, "lastName":"Ruszki", "firstName":"Pista", "email":"rp@email.org" }
 # expect posted employee to appear in MariaDB database ems / table employees
 # in a terminal:
 # $ mariadb -u root -p
 # Enter password: 
 # Welcome to the MariaDB monitor....
-# MariaDB [(none)]> use ems;
-# Database changed
 #
-# MariaDB [ems]> select * from employees;
+# MariaDB [(none)]> select * from ems.employees;
 # +----+--------------+------------+-----------+
 # | id | email        | first_name | last_name |
 # +----+--------------+------------+-----------+
-# |  1 | rp@email.org | Pista      | Ruszki    |
+# |> 1 | rp@email.org | Pista      | Ruszki   <|
 # +----+--------------+------------+-----------+
 # 1 row in set (0.000 sec)
+
+
+### create another employee
+POST {{baseUrl}}/api/employee HTTP/1.1
+content-type: application/json
+
+{ "firstName": "John", "lastName": "Doe", "email": "jdoe@email.org" }
+
+# expect return code 201 (Created)
+# expect in response body the same employee with a unique ID
+# {"id":2, "lastName":"Doe", "firstName":"John", "email":"jdoe@email.org" }
+# expect posted employee to appear in MariaDB database ems / table employees
+# MariaDB [(none)]> select * from ems.employees;
+# +----+----------------+------------+-----------+
+# | id | email          | first_name | last_name |
+# +----+----------------+------------+-----------+
+# |  1 | rp@email.org   | Pista      | Ruszki    |
+# |> 2 | jdoe@email.org | John       | Doe      <|
+# +----+----------------+------------+-----------+
+
+
+### read all employees
+GET {{baseUrl}}/api/employee HTTP/1.1
+
+# expect in response body the same employee with a unique ID
+# [ 
+#   {"id":1, "lastName":"Ruszki", "firstName":"Pista", "email":"rp@email.org" }
+#   {"id":2, "lastName":"Doe",    "firstName":"John",  "email":"jdoe@email.org" }
+# ]

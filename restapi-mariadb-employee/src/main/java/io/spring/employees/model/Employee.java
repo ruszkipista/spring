@@ -9,8 +9,10 @@ import javax.persistence.Column;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @AllArgsConstructor // Lombok: generate a constructor with all attributes
+@NoArgsConstructor  // Lombok: generate a constructor without parameters
 @Data // Lombok: equivalent to @Setter @Getter @EqualsAndHashCode @ToString
 @Entity // Persistence: specifies that the class is an entity
 @Table(name="employees") // Persistence: assign entity to DB table name
@@ -27,5 +29,5 @@ public class Employee {
     private String firstName;
 
     @Column(name = "email")
-    private String email;
+    private String email; 
 }
