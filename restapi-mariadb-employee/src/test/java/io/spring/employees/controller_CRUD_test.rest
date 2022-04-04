@@ -50,8 +50,24 @@ content-type: application/json
 ### read all employees
 GET {{baseUrl}}/api/employee HTTP/1.1
 
-# expect in response body the same employee with a unique ID
+# expect in response body both employees
 # [ 
 #   {"id":1, "lastName":"Ruszki", "firstName":"Pista", "email":"rp@email.org" }
 #   {"id":2, "lastName":"Doe",    "firstName":"John",  "email":"jdoe@email.org" }
 # ]
+
+
+### read one employee by ID
+GET {{baseUrl}}/api/employee/2 HTTP/1.1
+
+# expect in response body the employee with ID=2
+#   {"id":2, "lastName":"Doe", "firstName":"John", "email":"jdoe@email.org" }
+
+
+### updete one employee by ID
+PUT {{baseUrl}}/api/employee/2 HTTP/1.1
+
+{ "firstName": "John", "lastName": "Doe", "email": "johndoe@email.org" }
+
+# expect in response body the employee with ID=2
+#   {"id":2, "lastName":"Doe", "firstName":"John", "email":"jdoe@email.org" }

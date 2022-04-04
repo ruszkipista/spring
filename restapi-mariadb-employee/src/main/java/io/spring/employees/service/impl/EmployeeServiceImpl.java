@@ -1,9 +1,11 @@
 package io.spring.employees.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import io.spring.employees.exception.ResourceNotFoundException;
 import io.spring.employees.model.Employee;
 import io.spring.employees.repository.EmployeeRepository;
 import io.spring.employees.service.EmployeeService;
@@ -29,6 +31,18 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public List<Employee> getAllEmployees() {
         return this.employeeRepository.findAll();
+    }
+
+    @Override
+    public Employee getEmployeeById(long id) {
+        // Optional<Employee> employee = this.employeeRepository.findById(id);
+        // if (employee.isPresent()){
+        //     return employee.get();
+        // } else {
+        //     throw new ResourceNotFoundException("Employee", "id", id);
+        // }
+        return this.employeeRepository.findById(id).orElseThrow(() -> 
+                new ResourceNotFoundException("Employee", "id", id));
     }
     
 }

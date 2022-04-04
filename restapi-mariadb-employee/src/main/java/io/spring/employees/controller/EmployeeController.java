@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.spring.employees.model.Employee;
@@ -34,10 +36,17 @@ public class EmployeeController {
             HttpStatus.CREATED);
     }
 
-    // Get All Employees REST Endpoint
+    // Read All Employees REST Endpoint
     @GetMapping //maps HTTP GET request onto specific handler method
     public List<Employee> readAllEmployees(){
         return this.employeeService.getAllEmployees();
     }
     
+    // Read Employee by ID REST Endpoint
+    @GetMapping("{id}") //maps HTTP GET request onto specific handler method
+    public ResponseEntity<Employee> readEmployeeById(@PathVariable("id") long id){
+        return new ResponseEntity<Employee>(
+            this.employeeService.getEmployeeById(id), 
+            HttpStatus.OK);        
+    }
 }
