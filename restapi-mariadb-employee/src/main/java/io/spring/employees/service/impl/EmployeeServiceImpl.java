@@ -44,5 +44,22 @@ public class EmployeeServiceImpl implements EmployeeService {
         return this.employeeRepository.findById(id).orElseThrow(() -> 
                 new ResourceNotFoundException("Employee", "id", id));
     }
+
+    @Override
+    public Employee modifyEmployeeById(Employee employee, long id) {
+        this.employeeRepository.findById(id).orElseThrow(() -> 
+                new ResourceNotFoundException("Employee", "id", id));
+        // employee exists in DB
+        employee.setId(id);
+        return this.employeeRepository.save(employee);
+    }
+
+    @Override
+    public void removeEmployeeById(long id) {
+        this.employeeRepository.findById(id).orElseThrow(() -> 
+                new ResourceNotFoundException("Employee", "id", id));
+        // employee exists in DB
+        this.employeeRepository.deleteById(id);
+    }
     
 }

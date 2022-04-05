@@ -11,7 +11,7 @@ content-type: application/json
 }
 
 # expect return code 201 (Created)
-# expect in response body the same employee with a unique ID
+# expect the same employee with a unique ID in response body
 # {"id":1, "lastName":"Ruszki", "firstName":"Pista", "email":"rp@email.org" }
 # expect posted employee to appear in MariaDB database ems / table employees
 # in a terminal:
@@ -19,7 +19,7 @@ content-type: application/json
 # Enter password: 
 # Welcome to the MariaDB monitor....
 #
-# MariaDB [(none)]> select * from ems.employees;
+# MariaDB [(none)]> SELECT * FROM ems.employees;
 # +----+--------------+------------+-----------+
 # | id | email        | first_name | last_name |
 # +----+--------------+------------+-----------+
@@ -35,10 +35,10 @@ content-type: application/json
 { "firstName": "John", "lastName": "Doe", "email": "jdoe@email.org" }
 
 # expect return code 201 (Created)
-# expect in response body the same employee with a unique ID
+# expect the same employee with a unique ID in response body
 # {"id":2, "lastName":"Doe", "firstName":"John", "email":"jdoe@email.org" }
 # expect posted employee to appear in MariaDB database ems / table employees
-# MariaDB [(none)]> select * from ems.employees;
+# MariaDB [(none)]> SELECT * FROM ems.employees;
 # +----+----------------+------------+-----------+
 # | id | email          | first_name | last_name |
 # +----+----------------+------------+-----------+
@@ -50,7 +50,8 @@ content-type: application/json
 ### read all employees
 GET {{baseUrl}}/api/employee HTTP/1.1
 
-# expect in response body both employees
+# expect return code 200 (OK)
+# expect both employees in response body
 # [ 
 #   {"id":1, "lastName":"Ruszki", "firstName":"Pista", "email":"rp@email.org" }
 #   {"id":2, "lastName":"Doe",    "firstName":"John",  "email":"jdoe@email.org" }
@@ -64,10 +65,25 @@ GET {{baseUrl}}/api/employee/2 HTTP/1.1
 #   {"id":2, "lastName":"Doe", "firstName":"John", "email":"jdoe@email.org" }
 
 
-### updete one employee by ID
+### update one employee by ID
 PUT {{baseUrl}}/api/employee/2 HTTP/1.1
+content-type: application/json
 
 { "firstName": "John", "lastName": "Doe", "email": "johndoe@email.org" }
 
-# expect in response body the employee with ID=2
-#   {"id":2, "lastName":"Doe", "firstName":"John", "email":"jdoe@email.org" }
+# expect return code 200 (OK)
+# expect employee with ID=2 in response body
+# email is changed to johndoe@email.org, the rest of values are unchanged
+#   {"id":2, "lastName":"Doe", "firstName":"John", "email":"johndoe@email.org" }
+
+### delete one employee by ID
+DELETE  {{baseUrl}}/api/employee/2 HTTP/1.1
+
+# expect return code 200 (OK)
+# expect, that employee with ID=2 is not in the DB table
+# MariaDB [(none)]> SELECT * FROM ems.employees;
+# +----+--------------+------------+-----------+
+# | id | email        | first_name | last_name |
+# +----+--------------+------------+-----------+
+# |  1 | rp@email.org | Pista      | Ruszki    |
+# +----+--------------+------------+-----------+
