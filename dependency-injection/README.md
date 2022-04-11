@@ -41,7 +41,7 @@ Finished creating instance of bean 'searchApplication'
 
 Dependency injection by
 ```
-Constuctor               - Autowiring by type from bean name 'sortAlgorithm' via constructor to bean named 'bubbleSort'
+Constructor              - Autowiring by type from bean name 'sortAlgorithm' via constructor to bean named 'bubbleSort'
 Setter                   - Autowiring by type from bean name 'search' to bean named 'bubbleSort'
 No Setter or Constructor - Autowiring by type from bean name 'search' to bean named 'bubbleSort'
 
@@ -50,5 +50,30 @@ Finished creating instance of bean 'search'
 
 Without `@Primary` annotation:
 ```
-Exception in thread "main" org.springframework.beans.factory.NoUniqueBeanDefinitionException: No qualifying bean of type 'search.ISearchAlgorithm' available: expected single matching bean but found 2: 'binarySearch', 'sequentialSort'
+Exception in thread "main" org.springframework.beans.factory.NoUniqueBeanDefinitionException:
+No qualifying bean of type 'search.ISearchAlgorithm' available: expected single matching bean
+but found 2: 'binarySearch', 'sequentialSearch'
+```
+
+# 3 layers of dependency
+```Java
+// a Web layer class DEPENDENT on a Business layer class
+// AppBusinessService is a DEPENDENCY of AppController
+@Component
+public class AppController{
+    @Autowired
+    AppBusinessService businessService;
+}
+// Business layer - AppDataService is a DEPENDENCY of AppBusinessService
+@Component
+public class AppBusinessService{
+    @Autowired
+    AppDataService dataService;
+}
+// Data layer - JdbcTemplate is a DEPENDENCY of AppDataService
+@Component
+public class AppDataService{
+    @Autowired
+    JdbcTemplate template;
+}
 ```
