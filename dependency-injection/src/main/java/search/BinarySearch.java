@@ -8,11 +8,13 @@ import org.springframework.stereotype.Component;
 import sort.ISortAlgorithm;
 
 @Component
-@Primary
+@Primary // @Primary has priority over injection by name
 public class BinarySearch extends ISearchAlgorithm {
 
     @Autowired
     @Qualifier("defaultSort")
+    // if variable name would be "quickSort" and no @Qualifier,
+    // then an instance of "QuickSort" would be wired here 
     private ISortAlgorithm sortAlgorithm;
 
     // No need for explicit constructor, but assume the following:
