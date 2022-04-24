@@ -2,12 +2,17 @@ package search;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import sort.ISortAlgorithm;
 
-@Component
+
+@Component // make a bean out of this class
+// Prototype: a NEW bean (class instance) is returned whenever requested from application context
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @Primary // @Primary has priority over injection by name
 public class BinarySearch extends ISearchAlgorithm {
 

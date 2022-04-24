@@ -155,3 +155,22 @@ public class AppDataService{
     JdbcTemplate template;
 }
 ```
+
+# Bean Scope - `@Scope`
+The `@Scope` annotation on a classs determines if the returned bean will be the same instance of that class or not.
+
+Default: `singleton`
+
+- `singleton` - One instance per Spring Context
+- `prototype` - New bean whenever requested
+- `request` - One bean per HTTP request
+- `session` - One bean per HTTP session
+
+usage: annotate the class e.g.
+```Java
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+public class QuickSort {
+}
+```
