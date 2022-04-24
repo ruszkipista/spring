@@ -17,7 +17,8 @@ import sort.ISortAlgorithm;
 public class BinarySearch extends ISearchAlgorithm {
 
     @Autowired
-    @Qualifier("defaultSort")
+    // get bean qualifier name from application.properties, e.g. defaultSort
+    @Qualifier("${config.component.sort}")
     // if variable name would be "quickSort" and no @Qualifier,
     // then an instance of "QuickSort" would be wired here 
     private ISortAlgorithm sortAlgorithm;
