@@ -1,5 +1,5 @@
-package application;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -12,6 +12,8 @@ import search.ISearchAlgorithm;
 @ComponentScan(basePackages = "configuration")
 public class SearchApplication {
 
+	private static Logger LOGGER = LoggerFactory.getLogger(SearchApplication.class);
+
 	public static void main(String[] args) {
 		// application context
 		ApplicationContext applicationContext = SpringApplication.run(SearchApplication.class, args);
@@ -23,8 +25,8 @@ public class SearchApplication {
 		search.search(new int[] {10,3,4}, 5);
 
 		ISearchAlgorithm search2 = applicationContext.getBean(ISearchAlgorithm.class);
-		System.out.println(search);
-		System.out.println(search2);
+		LOGGER.info("{}",search);
+		LOGGER.info("{}",search2);
 	}
 
 }
